@@ -18,7 +18,7 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
 
 
-// This class is used to create a loading screen
+// This class is used to create a loading Screen
 class SplashScreen {
     JFrame frame;
     JLabel image=new JLabel(new ImageIcon("key-lock.png"));
