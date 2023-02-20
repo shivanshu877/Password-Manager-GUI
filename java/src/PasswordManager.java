@@ -18,7 +18,7 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
 
 
-// This class is used to create a loading Screen
+// This class is used to create a loading screen
 class SplashScreen {
     JFrame frame;
     JLabel image=new JLabel(new ImageIcon("key-lock.png"));
@@ -603,91 +603,8 @@ class PasswordManager implements ActionListener {
 
         }
         );
-
-        addNoteBtn = new JButton("ADD NOTE");
-        GUIButtonsSetting(addNoteBtn);
-        addNoteBtn.setBounds(90, 440, 220, 40);
-        conn1.add(addNoteBtn);
-        addNoteBtn.addActionListener(e -> {
-            if (addNoteBtn == e.getSource()) {
-                try {
-                    NoteGUI();
-                    // action on the add note btn
-                    addNote.addActionListener(e4 -> {
-                        if (addNote == e4.getSource()) {
-                            String note = tNote.getText(); // getting the note
-                            if (note.isEmpty()) {
-                                JOptionPane.showMessageDialog(conn3, "unable to store your note!", "ERROR", JOptionPane.ERROR_MESSAGE);
-                            } else {
-                                //calling put method of the hashtablePassword class
-                                notes.add(note); // adding the note to the arraylist
-                                JOptionPane.showMessageDialog(conn3, "Note added Successfully !");
-                                conn3.setVisible(false);
-                                tNote.setText(null);
-                            }
-                        }
-                    });
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(conn3, "Write something", "EXIT", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        }
-        );
-        
-        //get all notes
-        JButton getNoteBtn = new JButton("GET NOTE");
-        GUIButtonsSetting(getNoteBtn);
-        getNoteBtn.setBounds(90, 510, 220, 40);
-        conn1.add(getNoteBtn);
-        getNoteBtn.addActionListener(e -> {
-            if (getNoteBtn == e.getSource()) {
-                try {
-                    String allNotes = notes.get(notes.size() - 1); // getting the last note added
-                    if (allNotes.isEmpty()) { // checking if the note is empty or not
-                        JOptionPane.showMessageDialog(conn1, "No note found!", "INFO", JOptionPane.INFORMATION_MESSAGE); // showing the message
-                    } else {
-                        searchPassArea = new JTextArea(4, 5); // text area for the note
-                        textArea(allNotes, searchPassArea); // setting the text area
-                        JOptionPane.showMessageDialog(conn1, new JScrollPane(searchPassArea), "Get your notes", JOptionPane.INFORMATION_MESSAGE); // showing the message
-                    }
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(conn1, "Add a note before trying to retrive", "EXIT", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        }
-        );
-
     }
 
-    // method for setting the buttons and GUI for adding notes
-    private void NoteGUI() {
-
-        conn3 = new JFrame("Add Note");
-        conn3.setSize(500, 500);
-        conn3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        conn3.setLocationRelativeTo(null);
-        conn3.setLayout(null);
-        conn3.setVisible(true);
-        conn3.setResizable(false);
-
-        //add note label
-         addNoteLabel = new JLabel("Add Note");
-        addNoteLabel.setBounds(200, 20, 100, 30);
-        conn3.add(addNoteLabel);
-
-        //add note text area
-         tNote = new JTextArea(10, 10);
-        tNote.setBounds(100, 60, 300, 300);
-        conn3.add(tNote);
-
-        //add note button
-         addNote = new JButton("ADD NOTE");
-        GUIButtonsSetting(addNote);
-        addNote.setBounds(140, 380, 220, 30);
-        conn3.add(addNote);
-    }
-
-    // main method to run the application   
     public static void main(String[] args) {
         //loading screen class
         new SplashScreen();
